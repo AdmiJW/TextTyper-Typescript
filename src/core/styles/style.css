@@ -1,0 +1,21 @@
+[is='text-cursor'] {
+    display: inline-block;
+    margin: 0 .1em;
+
+    min-height: 1.2em;
+    min-width: 0.07em;
+    vertical-align: text-bottom;
+    background-color: black;
+
+    animation-name: CURSOR_BLINK_FLASH;
+}
+
+
+@keyframes CURSOR_BLINK_FLASH {
+    0%, 50% {
+        opacity: 1;
+    }
+    51%, 100% {
+        opacity: 0;
+    }
+}
