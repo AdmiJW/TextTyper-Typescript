@@ -1,3 +1,6 @@
+/** @author AdmiJW */
+
+
 
 //*==============//
 //* Text Cursor  //
@@ -24,27 +27,32 @@ interface ITextTyperConfig {
     blinkDuration?: number,
 }
 
-interface ITextTyper {
-    textbox: HTMLElement;
-    typeMsPerCharacter: number;
-    deleteMsPerCharacter: number;
-    textCursor: ITextCursor;
-    textNode: Text;
+abstract class ITextTyper {
+    // Static members - Refer to dependent classes (constructor)
+    static readonly TextCursor: new(blinkDuration: number)=> ITextCursor;   
+    static readonly TextTyperEventQueue: new(textTyper: ITextTyper)=> ITextTyperEventQueue;
 
-    _type( char: string ): void;
-    _delete( n: number ): void;
-    _newline(): void;
+    // Class properties
+    abstract textbox: HTMLElement;
+    abstract typeMsPerCharacter: number;
+    abstract deleteMsPerCharacter: number;
+    abstract textCursor: ITextCursor;
+    abstract textNode: Text;
 
-    type( text:string , resolve?: (value:unknown)=>void ): Promise<void>;
-    putText( text: string, resolve?: (value:unknown)=>void ): Promise<void>;
-    delete( count: number, resolve?:(value:unknown)=>void ): Promise<void>;
-    clear( resolve?:(value:unknown)=>void ): Promise<void>;
-    configure({
+    abstract _type( char: string ): void;
+    abstract _delete( n: number ): void;
+    abstract _newline(): void;
+
+    abstract type( text:string , resolve?: (value:unknown)=>void ): Promise<void>;
+    abstract putText( text: string, resolve?: (value:unknown)=>void ): Promise<void>;
+    abstract delete( count: number, resolve?:(value:unknown)=>void ): Promise<void>;
+    abstract clear( resolve?:(value:unknown)=>void ): Promise<void>;
+    abstract configure({
         typeCPS,
         deleteCPS,
         blinkDuration
     }: ITextTyperConfig, resolve?:(value:unknown)=>void): Promise<void>;
-    getEventQueue(): ITextTyperEventQueue;
+    abstract getEventQueue(): ITextTyperEventQueue;
 }
 
 
@@ -62,9 +70,6 @@ type IEventRecord = {
     /** An array of arguments to be passed into the `eventFunc`, in sequence */
     args: [...args: any],
 };
-
-
-
 
 interface ITextTyperEventQueue {
     textTyper: ITextTyper;

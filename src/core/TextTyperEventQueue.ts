@@ -1,14 +1,13 @@
 /** @author AdmiJW */
 
 import { getTimeoutPromise } from '../utils';
-import TextTyper from './TextTyper';
-import { IEventRecord, ITextTyperConfig, ITextTyperEventQueue } from '../interfaces';
+import { IEventRecord, ITextTyper, ITextTyperConfig, ITextTyperEventQueue } from '../interfaces';
 
 
 
 
 class TextTyperEventQueue implements ITextTyperEventQueue {
-    textTyper: TextTyper;
+    textTyper: ITextTyper;
     eventQueue: Array<IEventRecord> = [];
     historyQueue: Array<IEventRecord> = [];
 
@@ -16,7 +15,7 @@ class TextTyperEventQueue implements ITextTyperEventQueue {
     /**
      * @param textTyper The underlying `TextTyper` which the event queue acts on.
      */
-    constructor( textTyper: TextTyper ) {
+    constructor( textTyper: ITextTyper ) {
         this.textTyper = textTyper;
     }
 

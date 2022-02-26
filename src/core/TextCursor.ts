@@ -1,5 +1,6 @@
 /** @author AdmiJW */
 
+
 import { DEFAULTS } from './CONSTANT';
 import { ITextCursor } from '../interfaces';
 

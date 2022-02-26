@@ -11,6 +11,11 @@
 }
 
 
+.text-box {
+    white-space: pre;
+}
+
+
 @keyframes CURSOR_BLINK_FLASH {
     0%, 50% {
         opacity: 1;
