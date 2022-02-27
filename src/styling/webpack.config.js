@@ -3,7 +3,7 @@ const path = require('path');
 
 module.exports = {
     mode: 'production',
-    entry: './src/keysound/inject.ts',
+    entry: './src/styling/inject.ts',
     module: {
         rules: [
             {
@@ -21,9 +21,7 @@ module.exports = {
         filename: 'bundle.js',
         path: path.resolve(__dirname, '..', '..', 'dist', 'styling'),
         library: {
-            name: "TextTyperStyling",
-            type: "umd",
-            export: 'default'
+            type: "window",
         },
         scriptType: 'module'
     },

@@ -42,7 +42,7 @@ class TextTyper implements ITextTyper {
         while (this.textbox.firstChild) this.textbox.removeChild( this.textbox.firstChild );
         this.textbox.classList.add('text-box');
         this.textbox.appendChild( this.textNode );
-        this.textbox.appendChild( this.textCursor );
+        this.textbox.appendChild( this.textCursor.html );
     }
 
 
@@ -69,9 +69,9 @@ class TextTyper implements ITextTyper {
      */
     _delete( n: number ) {
         if (!this.textNode.textContent && this.textNode.previousSibling) {
-            this.textbox.removeChild( this.textCursor.previousSibling! );   // Remove the current text node (empty)
-            this.textbox.removeChild( this.textCursor.previousSibling! );   // Remove the <br/> element
-            this.textNode = this.textCursor.previousSibling as Text;
+            this.textbox.removeChild( this.textCursor.html.previousSibling! );   // Remove the current text node (empty)
+            this.textbox.removeChild( this.textCursor.html.previousSibling! );   // Remove the <br/> element
+            this.textNode = this.textCursor.html.previousSibling as Text;
         }
         else this.textNode.textContent = this.textNode.textContent!.slice(0, -n);
     }
@@ -82,9 +82,9 @@ class TextTyper implements ITextTyper {
      * This is done by appending a <br/> element and a new text node after the breakline
      */
     _newline() {
-        this.textbox.insertBefore<HTMLBRElement>( document.createElement<"br">("br"), this.textCursor );
-        this.textbox.insertBefore<Text>( document.createTextNode(''), this.textCursor );
-        this.textNode = this.textCursor.previousSibling as Text;
+        this.textbox.insertBefore<HTMLBRElement>( document.createElement<"br">("br"), this.textCursor.html );
+        this.textbox.insertBefore<Text>( document.createTextNode(''), this.textCursor.html );
+        this.textNode = this.textCursor.html.previousSibling as Text;
     }
 
 

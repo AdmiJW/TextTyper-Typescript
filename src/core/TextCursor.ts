@@ -10,44 +10,46 @@ import "./styles/style.css";
 
 
 
-class TextCursor extends HTMLSpanElement implements ITextCursor {
+class TextCursor implements ITextCursor {
     blinkDuration: number = DEFAULTS.DEFAULT_BLINK_PERIOD;
     isBlinking: boolean = true;
+    html: HTMLElement;
 
     /**
      * @param blinkDuration The duration in which one cursor blink cycle occurs, in milliseconds
      */
     constructor(blinkDuration: number = DEFAULTS.DEFAULT_BLINK_PERIOD) 
     {
-        super();
-        // Set the 'is' attribute as specified in https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements
-        this.setAttribute('is', DEFAULTS.HTML_DOMSTRING_NAME);
+        this.html = document.createElement('span');
+        this.html.setAttribute('data-is', DEFAULTS.HTML_IS_ATTRIBUTE);
         this.setBlinkingDuration(blinkDuration);
     }
 
 
-    setBlinkingDuration(duration: number): TextCursor {
+    setBlinkingDuration(duration: number): this {
         if ( !isFinite(duration) || duration < 0 ) 
             throw `Invalid blink duration provided in the constructor of Cursor: ${duration}`;
         
         this.blinkDuration = duration;
-        this.style.animationDuration = `${duration}ms`;
+        this.html.style.animationDuration = `${duration}ms`;
         return this;
     }
 
     
-    setIsBlinking(turnOn: boolean): TextCursor {
+    setIsBlinking(turnOn: boolean): this {
         // Only changes the CSS value if required.
-        if (!this.isBlinking && turnOn) this.style.animationDuration = `${this.blinkDuration}ms`;
-        else if (this.isBlinking && !turnOn) this.style.animationDuration = '0ms';
+        if (!this.isBlinking && turnOn) this.html.style.animationDuration = `${this.blinkDuration}ms`;
+        else if (this.isBlinking && !turnOn) this.html.style.animationDuration = '0ms';
 
         this.isBlinking = turnOn;
         return this;
     }
-}
 
-// Registers a new custom HTML element - <text-cursor>. See https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements
-customElements.define('text-cursor', TextCursor, { extends: 'span'});
+    
+    getHTML(): HTMLElement {
+        return this.html;
+    }
+}
 
 
 export default TextCursor;

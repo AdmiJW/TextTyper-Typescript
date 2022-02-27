@@ -5,7 +5,8 @@
   "main": "",
   "scripts": {
     "build-core": "webpack --config ./src/core/webpack.config.js",
-    "build-keysound": "webpack --config ./src/keysound/webpack.config.js"
+    "build-keysound": "webpack --config ./src/keysound/webpack.config.js",
+    "build-styling": "webpack --config ./src/styling/webpack.config.js"
   },
   "keywords": [],
   "author": "AdmiJW",

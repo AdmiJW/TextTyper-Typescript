@@ -1,4 +1,7 @@
-[is='text-cursor'] {
+
+
+
+[data-is='text-cursor'] {
     display: inline-block;
     margin: 0 .1em;
 
@@ -7,7 +10,7 @@
     vertical-align: text-bottom;
     background-color: black;
 
-    animation-name: CURSOR_BLINK_FLASH;
+    animation-name: BLINK_FLASH;
     animation-iteration-count: infinite;
     animation-timing-function: linear;
 }
@@ -18,7 +21,7 @@
 }
 
 
-@keyframes CURSOR_BLINK_FLASH {
+@keyframes BLINK_FLASH {
     0%, 50% {
         opacity: 1;
     }

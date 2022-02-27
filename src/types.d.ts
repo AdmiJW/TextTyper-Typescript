@@ -6,12 +6,14 @@
 //* Text Cursor  //
 //*==============//
 
-interface ITextCursor extends Node {
+interface ITextCursor  {
     blinkDuration: number;
     isBlinking: boolean;
+    html: HTMLElement;
 
-    setBlinkingDuration(duration: number): ITextCursor;
-    setIsBlinking(turnOn: boolean): ITextCursor;
+    setBlinkingDuration(duration: number): this;
+    setIsBlinking(turnOn: boolean): this;
+    getHTML(): HTMLElement;
 }
 
 
@@ -94,7 +96,7 @@ interface ITextTyperEventQueue {
 // Since 3 classes will be exposed to the 'window' object, augment to have typing support
 declare global {
     interface Window { 
-        TextCursor: new(blinkDuration: number)=> ITextCursor & Node;
+        TextCursor: new(blinkDuration: number)=> ITextCursor;
         TextTyper: new(textbox: HTMLElement, config: ITextTyperConfig)=> ITextTyper;
         TextTyperEventQueue: new(textTyper: ITextTyper)=> ITextTyperEventQueue;
     }

@@ -1,0 +1,129 @@
+/** @author AdmiJW */
+
+/*=============================
+        CURSOR STYLES
+==============================*/
+
+/* Vertical Style */
+[data-is='text-cursor'].STYLE_VERT {
+    min-height: 1.2em;
+    min-width: 0.07em;
+    vertical-align: text-bottom;
+    background-color: black;
+}
+
+
+/* I Style */
+[data-is='text-cursor'].STYLE_I {
+    min-height: 1em;
+    min-width: 0.05em;
+    vertical-align: text-top;
+    position: relative;
+    background-color: black;
+    margin: 0 .2em;
+}
+[data-is='text-cursor'].STYLE_I::before {
+    content: '';
+    background-color: black;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    height: 0.05em;
+    width: 0.3em;
+    transform: translateX(-50%);
+}
+[data-is='text-cursor'].STYLE_I::after {
+    content: '';
+    background-color: black;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    height: 0.05em;
+    width: 0.3em;
+    transform: translateX(-50%);
+}
+
+
+/* Y Style */
+[data-is='text-cursor'].STYLE_Y {
+    min-height: 1em;
+    min-width: 0.05em;
+    position: relative;
+    vertical-align: text-top;
+    top: .2em;
+
+    background-color: black;
+    transform: scale(0.8);
+    transform-origin: top center;
+}
+[data-is='text-cursor'].STYLE_Y::before {
+    content: '⋎';
+    display:inline-block;
+    position: absolute;
+    font-size: .5em;
+    top: -0.85em;
+    left: 50%;
+    transform: translateX(-50%);
+}
+[data-is='text-cursor'].STYLE_Y::after {
+    content: '⋏';
+    position: absolute;
+    font-size: .5em;
+    bottom: -0.7em;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+
+/* UNDERSCORE Style */
+[data-is='text-cursor'].STYLE__ {
+    min-height: 0.1em;
+    min-width: 1.2ch;
+
+    background-color: black;
+
+    vertical-align: text-bottom;
+}
+
+
+/* Block Style */
+[data-is='text-cursor'].STYLE_BLOCK {
+    min-height: 1.2em;
+    min-width: 1ch;
+    vertical-align: text-bottom;
+    background-color: black;
+}
+
+
+
+/* Left Arrow Style */
+[data-is='text-cursor'].STYLE_LEFTARR {
+    min-width: 0;
+    width: 0;
+    vertical-align: baseline;
+}
+[data-is='text-cursor'].STYLE_LEFTARR::before {
+    content: '˂';
+}
+
+
+
+/*===========================
+        KEYFRAMES
+===========================*/
+@keyframes BLINK_FLASH {
+    0%, 50% {
+        opacity: 1;
+    }
+    51%, 100% {
+        opacity: 0;
+    }
+}
+@keyframes BLINK_LINEAR {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+}

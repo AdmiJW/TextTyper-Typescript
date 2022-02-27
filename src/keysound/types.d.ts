@@ -23,6 +23,8 @@ interface ITextTyper_Keysound {
     ): Promise<void>;
 }
 
+
+
 interface ITextTyperEventQueue_Keysound {
     configureKeysound (
         config: ITextTyperSoundConfig,
