@@ -19,7 +19,7 @@ module.exports = {
     },
     output: {
         filename: 'bundle.js',
-        path: path.resolve(__dirname, 'dist', 'core'),
+        path: path.resolve(__dirname, '..', '..', 'dist', 'core'),
         library: {
             type: "window",
         },

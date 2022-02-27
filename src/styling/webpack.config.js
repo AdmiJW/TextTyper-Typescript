@@ -19,9 +19,9 @@ module.exports = {
     },
     output: {
         filename: 'bundle.js',
-        path: path.resolve(__dirname, '..', '..', 'dist', 'keysound'),
+        path: path.resolve(__dirname, '..', '..', 'dist', 'styling'),
         library: {
-            name: "TextTyperKeysound",
+            name: "TextTyperStyling",
             type: "umd",
             export: 'default'
         },
