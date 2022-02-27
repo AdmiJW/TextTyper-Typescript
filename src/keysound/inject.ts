@@ -1,3 +1,7 @@
+/** @author AdmiJW */
+
+
+
 import { ITextTyperConfig } from "../types";
 import { ITextTyper_Keysound, ITextTyperSoundConfig, ITextTyperEventQueue_Keysound } from "./types";
 import KEYBOARD_SOUNDS from "./SOUNDS";
