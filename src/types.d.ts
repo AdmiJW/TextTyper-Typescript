@@ -73,18 +73,18 @@ interface ITextTyperEventQueue {
     historyQueue: Array<IEventRecord>;
 
     start(): Promise<void>;
-    loop( count: number ): ITextTyperEventQueue;
-    standby( time: number ): ITextTyperEventQueue;
-    clearHistory(): ITextTyperEventQueue;
-    type( text: string ): ITextTyperEventQueue;
-    putText( text: string ): ITextTyperEventQueue;
-    delete( count: number ): ITextTyperEventQueue;
-    clear(): ITextTyperEventQueue;
+    loop( count: number ): this;
+    standby( time: number ): this;
+    clearHistory(): this;
+    type( text: string ): this;
+    putText( text: string ): this;
+    delete( count: number ): this;
+    clear(): this;
     configure({
         typeCPS,
         deleteCPS,
         blinkDuration,
-    }: ITextTyperConfig): ITextTyperEventQueue;
+    }: ITextTyperConfig): this;
 }
 
 

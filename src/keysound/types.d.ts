@@ -2,8 +2,6 @@ import KEYBOARD_SOUNDS from "./SOUNDS";
 
 
 
-
-// Augment the TextTyper to also include <audio>
 interface ITextTyperSoundConfig {
     typeSound?: KEYBOARD_SOUNDS,
     deleteSound?: KEYBOARD_SOUNDS,
@@ -20,4 +18,10 @@ interface ITextTyper_Keysound {
         config: ITextTyperSoundConfig,
         resolve?: (value:unknown)=>void
     ): Promise<void>;
+}
+
+interface ITextTyperEventQueue_Keysound {
+    configureKeysound (
+        config: ITextTyperSoundConfig,
+    ): this;
 }

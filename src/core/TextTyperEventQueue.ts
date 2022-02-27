@@ -44,7 +44,7 @@ class TextTyperEventQueue implements ITextTyperEventQueue {
      *      repeat
      * @returns The current instance of `TextTyperEventQueue`
      */
-    loop( count=Infinity ): TextTyperEventQueue {
+    loop( count=Infinity ): this {
         this.eventQueue.push({
             thisBinding: this,
             eventFunc: this._looper,
@@ -61,7 +61,7 @@ class TextTyperEventQueue implements ITextTyperEventQueue {
      * @param time Time in milliseconds for text typer idle
      * @returns this instance
      */
-    standby( time:number ): TextTyperEventQueue {
+    standby( time:number ): this {
         this.eventQueue.push({
             thisBinding: this,
             eventFunc: this._standby,
@@ -77,7 +77,7 @@ class TextTyperEventQueue implements ITextTyperEventQueue {
      * 
      * @returns this instance
      */
-    clearHistory(): TextTyperEventQueue {
+    clearHistory(): this {
         this.eventQueue.push({
             thisBinding: this,
             eventFunc: this._looper,
@@ -96,7 +96,7 @@ class TextTyperEventQueue implements ITextTyperEventQueue {
      * @param text The text to be typed into the textbox
      * @returns this instance
      */
-    type( text:string ): TextTyperEventQueue {
+    type( text:string ): this {
         this.eventQueue.push({
             thisBinding: this.textTyper,
             eventFunc: this.textTyper.type,
@@ -114,7 +114,7 @@ class TextTyperEventQueue implements ITextTyperEventQueue {
      * @param text The text to be appended immediately into the textbox
      * @returns this instance
      */
-    putText( text:string ): TextTyperEventQueue {
+    putText( text:string ): this {
         this.eventQueue.push({
             thisBinding: this.textTyper,
             eventFunc: this.textTyper.putText,
@@ -133,7 +133,7 @@ class TextTyperEventQueue implements ITextTyperEventQueue {
      *      characters, it will simply stop after all characters are deleted
      * @returns this instance
      */
-    delete( count = Infinity ): TextTyperEventQueue {
+    delete( count = Infinity ): this {
         this.eventQueue.push({
             thisBinding: this.textTyper,
             eventFunc: this.textTyper.delete,
@@ -150,7 +150,7 @@ class TextTyperEventQueue implements ITextTyperEventQueue {
      * 
      * @returns this instance
      */
-    clear(): TextTyperEventQueue {
+    clear(): this {
         this.eventQueue.push({
             thisBinding: this.textTyper,
             eventFunc: this.textTyper.clear,
@@ -168,7 +168,7 @@ class TextTyperEventQueue implements ITextTyperEventQueue {
      * @param param0 Configuration object
      * @returns this instance
      */
-    configure(config: ITextTyperConfig): TextTyperEventQueue {
+    configure(config: ITextTyperConfig): this {
         this.eventQueue.push({
             thisBinding: this.textTyper,
             eventFunc: this.textTyper.configure,
