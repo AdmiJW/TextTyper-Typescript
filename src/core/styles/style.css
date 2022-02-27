@@ -8,6 +8,8 @@
     background-color: black;
 
     animation-name: CURSOR_BLINK_FLASH;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
 }
 
 

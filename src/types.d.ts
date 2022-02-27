@@ -6,7 +6,7 @@
 //* Text Cursor  //
 //*==============//
 
-interface ITextCursor {
+interface ITextCursor extends Node {
     blinkDuration: number;
     isBlinking: boolean;
 
@@ -27,32 +27,28 @@ interface ITextTyperConfig {
     blinkDuration?: number,
 }
 
-abstract class ITextTyper {
-    // Static members - Refer to dependent classes (constructor)
-    static readonly TextCursor: new(blinkDuration: number)=> ITextCursor;   
-    static readonly TextTyperEventQueue: new(textTyper: ITextTyper)=> ITextTyperEventQueue;
+interface ITextTyper {
+    textbox: HTMLElement;
+    typeMsPerCharacter: number;
+    deleteMsPerCharacter: number;
+    textCursor: ITextCursor;
+    textNode: Text;
 
-    // Class properties
-    abstract textbox: HTMLElement;
-    abstract typeMsPerCharacter: number;
-    abstract deleteMsPerCharacter: number;
-    abstract textCursor: ITextCursor;
-    abstract textNode: Text;
+    
+    _type( char: string ): void;
+    _delete( n: number ): void;
+    _newline(): void;
 
-    abstract _type( char: string ): void;
-    abstract _delete( n: number ): void;
-    abstract _newline(): void;
-
-    abstract type( text:string , resolve?: (value:unknown)=>void ): Promise<void>;
-    abstract putText( text: string, resolve?: (value:unknown)=>void ): Promise<void>;
-    abstract delete( count: number, resolve?:(value:unknown)=>void ): Promise<void>;
-    abstract clear( resolve?:(value:unknown)=>void ): Promise<void>;
-    abstract configure({
+    type( text:string , resolve?: (value:unknown)=>void ): Promise<void>;
+    putText( text: string, resolve?: (value:unknown)=>void ): Promise<void>;
+    delete( count: number, resolve?:(value:unknown)=>void ): Promise<void>;
+    clear( resolve?:(value:unknown)=>void ): Promise<void>;
+    configure({
         typeCPS,
         deleteCPS,
         blinkDuration
     }: ITextTyperConfig, resolve?:(value:unknown)=>void): Promise<void>;
-    abstract getEventQueue(): ITextTyperEventQueue;
+    getEventQueue(): ITextTyperEventQueue;
 }
 
 
@@ -89,6 +85,19 @@ interface ITextTyperEventQueue {
         deleteCPS,
         blinkDuration,
     }: ITextTyperConfig): ITextTyperEventQueue;
+}
+
+
+//*==============================//
+//* Global object augmentation  //
+//*=============================//
+// Since 3 classes will be exposed to the 'window' object, augment to have typing support
+declare global {
+    interface Window { 
+        TextCursor: new(blinkDuration: number)=> ITextCursor & Node;
+        TextTyper: new(textbox: HTMLElement, config: ITextTyperConfig)=> ITextTyper;
+        TextTyperEventQueue: new(textTyper: ITextTyper)=> ITextTyperEventQueue;
+    }
 }
 
 

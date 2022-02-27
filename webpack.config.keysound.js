@@ -3,7 +3,7 @@ const path = require('path');
 
 module.exports = {
     mode: 'production',
-    entry: './src/core/TextTyper.ts',
+    entry: './src/keysound/inject.ts',
     module: {
         rules: [
             {
@@ -19,9 +19,11 @@ module.exports = {
     },
     output: {
         filename: 'bundle.js',
-        path: path.resolve(__dirname, 'dist', 'core'),
+        path: path.resolve(__dirname, 'dist', 'keysound'),
         library: {
-            type: "window",
+            name: "window",
+            type: "assign-properties",
+            export: 'default'
         },
         scriptType: 'module'
     },

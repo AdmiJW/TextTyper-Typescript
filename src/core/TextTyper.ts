@@ -5,19 +5,14 @@ import { DEFAULTS } from './CONSTANT';
 import TextCursor from './TextCursor';
 import TextTyperEventQueue from './TextTyperEventQueue';
 import { getTimeoutPromise } from '../utils';
-import { ITextTyper, ITextTyperConfig, ITextTyperEventQueue } from '../interfaces';
+import { ITextCursor, ITextTyper, ITextTyperConfig, ITextTyperEventQueue } from '../types';
 
 
-class TextTyper extends ITextTyper {
-    // Static, readonly members
-    static readonly TextTyperEventQueue: new(textTyper: ITextTyper)=> TextTyperEventQueue = TextTyperEventQueue;
-    static readonly TextCursor: new(blinkDuration: number)=> TextCursor = TextCursor;
-
-
+class TextTyper implements ITextTyper {
     textbox: HTMLElement;
     typeMsPerCharacter: number = 1000/DEFAULTS.DEFAULT_TYPE_CPS;
     deleteMsPerCharacter: number = 1000/DEFAULTS.DEFAULT_DELETE_CPS;
-    textCursor: TextCursor;
+    textCursor: ITextCursor;
     textNode: Text;
     
 
@@ -35,13 +30,12 @@ class TextTyper extends ITextTyper {
             blinkDuration = DEFAULTS.DEFAULT_BLINK_PERIOD,
         }: ITextTyperConfig
     ) {
-        super();
         if (!(textbox instanceof Element))
             throw "The textbox passed into the TextTyper constructor must be a valid HTML element!";
         
         this.textbox = textbox;
         this.configure({ typeCPS, deleteCPS });
-        this.textCursor = new TextTyper.TextCursor(blinkDuration);
+        this.textCursor = new window.TextCursor(blinkDuration);
         this.textNode = document.createTextNode('');
         
         // Clears the textbox of any children before placing the text node and cursor
@@ -201,11 +195,15 @@ class TextTyper extends ITextTyper {
      * @returns TextTyperEventQueue instance
      */
     getEventQueue(): ITextTyperEventQueue {
-        return new TextTyper.TextTyperEventQueue(this);
+        return new window.TextTyperEventQueue(this);
     }
 
 }
 
 
 
-export default TextTyper;
+export {
+    TextTyper,
+    TextCursor,
+    TextTyperEventQueue
+};

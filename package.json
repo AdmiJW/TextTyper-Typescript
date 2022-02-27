@@ -4,7 +4,8 @@
   "description": "",
   "main": "",
   "scripts": {
-    "build-core": "webpack --config ./webpack.config.core.js"
+    "build-core": "webpack --config ./webpack.config.core.js",
+    "build-keysound": "webpack --config ./webpack.config.keysound.js"
   },
   "keywords": [],
   "author": "AdmiJW",

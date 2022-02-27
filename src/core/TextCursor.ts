@@ -2,7 +2,7 @@
 
 
 import { DEFAULTS } from './CONSTANT';
-import { ITextCursor } from '../interfaces';
+import { ITextCursor } from '../types';
 
 // Default style applied to the cursor.
 import "./styles/style.css";
@@ -22,11 +22,6 @@ class TextCursor extends HTMLSpanElement implements ITextCursor {
         super();
         // Set the 'is' attribute as specified in https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements
         this.setAttribute('is', DEFAULTS.HTML_DOMSTRING_NAME);
-
-        // Permanent CSS styles that have to be applied
-        this.style.animationIterationCount = 'infinite';
-        this.style.animationTimingFunction = 'linear';
-        
         this.setBlinkingDuration(blinkDuration);
     }
 
