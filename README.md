@@ -14,11 +14,17 @@ A Text typer simulation Javascript module for your webpage. Written in Typescrip
 ### Table of Contents
 
 [Setting up](#setting-up)
+
 [Getting started](#getting-started)
+
 [The `TextTyper`](#the-texttyper-%E2%8C%A8%EF%B8%8F)
+
 [The `TextTyperEventQueue`](#the-texttypereventqueue-%F0%9F%9A%B6%F0%9F%9A%B6)
+
 [Extensions](#extensions-%F0%9F%94%8C)
+
 1. [Keysound Extension](#1---keysound-extension-%F0%9F%94%8A)
+
 1. [Styling Extension](#2---styling-extension-%F0%9F%8E%87) 
 
 [Others](#others)
@@ -30,7 +36,7 @@ A Text typer simulation Javascript module for your webpage. Written in Typescrip
 To get started, simply put the script tag into your HTML document. Module will be loaded via CDN
 
 ```html
-<>
+<script src='https://unpkg.com/text_typer-ts@latest/dist/core/bundle.js'></script>
 ```
 
 Then, you may begin writing Javascript to use the text typer. See the next section to get a rough idea on how to do it:
@@ -130,7 +136,10 @@ The __Keysound Extension__ features keyboard sounds when the `TextTyper` either 
 To include this extension, simply add the script tag below the core package:
 
 ```html
-<>
+<!-- Core package -->
+<script src='https://unpkg.com/text_typer-ts@latest/dist/core/bundle.js'></script>
+<!-- Keysound Extension -->
+<script src='https://unpkg.com/text_typer-ts@latest/dist/keysound/bundle.js'></script>
 ```
 
 With the extension included, you may see the browser's global `window` object is exposed to `TextTyperKeysound` object, consisting of several options of keysound to select:
@@ -199,7 +208,10 @@ The styling extension provides interfaces to change the cursor's appearance, as 
 To get started, include the `<script>` tag:
 
 ```html
-<>
+<!-- Core package -->
+<script src='https://unpkg.com/text_typer-ts@latest/dist/core/bundle.js'></script>
+<!-- Styling Extension -->
+<script src='https://unpkg.com/text_typer-ts@latest/dist/styling/bundle.js'></script>
 ```
 
 Once included, `BLINK_MODE` and `CURSOR_STYLE` objects will be included in the browser's global `window` object. You will use these values in the styling extension configurations later.
