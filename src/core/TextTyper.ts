@@ -28,7 +28,7 @@ class TextTyper implements ITextTyper {
             typeCPS = DEFAULTS.DEFAULT_TYPE_CPS,
             deleteCPS = DEFAULTS.DEFAULT_DELETE_CPS,
             blinkDuration = DEFAULTS.DEFAULT_BLINK_PERIOD,
-        }: ITextTyperConfig
+        }: ITextTyperConfig = {}
     ) {
         if (!(textbox instanceof Element))
             throw "The textbox passed into the TextTyper constructor must be a valid HTML element!";
