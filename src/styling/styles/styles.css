@@ -107,6 +107,11 @@
 }
 
 
+/* None Style */
+[data-is='text-cursor'].STYLE_NONE {
+    display: none;
+}
+
 
 /*===========================
         KEYFRAMES
